@@ -1,0 +1,38 @@
+{
+  "name": "generator-gruntfile",
+  "version": "0.0.0",
+  "description": "A gruntfile generator for Yeoman",
+  "keywords": [
+    "yeoman-generator",
+    "scaffold"
+  ],
+  "homepage": "https://github.com/yeoman/generator-gruntfile",
+  "bugs": "https://github.com/yeoman/generator-gruntfile/issues",
+  "author": {
+    "name": "Addy Osmani",
+    "email": "addyosmani@gmail.com",
+    "url": "https://github.com/addyosmani"
+  },
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yeoman/generator-gruntfile.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "yeoman-generator": "~0.10.5"
+  },
+  "devDependencies": {
+    "mocha": "~1.9.0"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ]
+}
