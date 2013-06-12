@@ -21,59 +21,23 @@ GruntfileGenerator.prototype.askFor = function askFor() {
   var cb = this.async();
 
   // welcome message
-  var welcome =
-  '\n     _-----_' +
-  '\n    |       |' +
-  '\n    |' + '--(o)--'.red + '|   .--------------------------.' +
-  '\n   `---------´  |    ' + 'Welcome to Yeoman,'.yellow.bold + '    |' +
-  '\n    ' + '( '.yellow + '_' + '´U`'.yellow + '_' + ' )'.yellow + '   |   ' + 'ladies and gentlemen!'.yellow.bold + '  |' +
-  '\n    /___A___\\   \'__________________________\'' +
-  '\n     |  ~  |'.yellow +
-  '\n   __' + '\'.___.\''.yellow + '__' +
-  '\n ´   ' + '`  |'.red + '° ' + '´ Y'.red + ' `\n' +
-  '\n';
+  console.log(this.yeoman);
 
-  console.log(welcome);
-
-  var prompts = [
-  {
+  var prompts = [{
+    type: 'confirm',
     name: 'dom',
-    'message': 'Is the DOM involved in ANY way?',
-    'default': 'Y/n',
-    'warning': 'Yes: QUnit unit tests + JSHint "browser" globals. No: Nodeunit unit tests.'
+    message: 'Is the DOM involved in ANY way?'
   }, {
+    type: 'confirm',
     name: 'min_concat',
-    'message': 'Will files be concatenated or minified?',
-    'default': 'Y/n',
-    'warning': 'Yes: min + concat tasks. No: nothing to see here.'
+    message: 'Will files be concatenated or minified?'
   }, {
+    type: 'confirm',
     name: 'package_json',
-    'message': 'Will you have a package.json file?',
-    'default': 'Y/n',
-    'warning': 'This changes how filenames are determined and banners are generated.'
+    message: 'Will you have a package.json file?'
   }];
 
-  var nameToMessage = function (name) {
-    return name.split('_').map(
-      function (x) { return this._.capitalize(x); }.bind(this)
-    ).join(' ') + ':';
-  }.bind(this);
-
-  // Generate prompt messages if only the name is defined.
-  prompts.map(function (entry) {
-    if (entry.message === undefined) {
-      entry.message = nameToMessage(entry.name);
-    }
-    return entry;
-  }.bind(this));
-
   this.currentYear = (new Date()).getFullYear();
-
-  props.dom = /y/i.test(props.dom);
-  props.min_concat = /y/i.test(props.min_concat);
-  props.package_json = /y/i.test(props.package_json);
-  props.test_task = props.dom ? 'qunit' : 'nodeunit';
-  props.file_name = props.package_json ? '<%%= pkg.name %>' : 'FILE_NAME';
 
   // Find the first `preferred` item existing in `arr`.
   function prefer(arr, preferred) {
@@ -87,18 +51,21 @@ GruntfileGenerator.prototype.askFor = function askFor() {
 
   // Guess at some directories, if they exist.
   var dirs = grunt.file.expand({filter: 'isDirectory'}, '*').map(function(d) { return d.slice(0, -1); });
-  props.lib_dir = prefer(dirs, ['lib', 'src']);
-  props.test_dir = prefer(dirs, ['test', 'tests', 'unit', 'spec']);
 
-  // Maybe this should be extended to support more libraries. Patches welcome!
-  props.jquery = grunt.file.expand({filter: 'isFile'}, '**/jquery*.js').length > 0;
+  this.props = {
+    lib_dir: prefer(dirs, ['lib', 'src']),
+    test_dir: prefer(dirs, ['test', 'tests', 'unit', 'spec']),
+    jquery: grunt.file.expand({filter: 'isFile'}, '**/jquery*.js').length > 0
+  };
 
-  this.prompt(prompts, function (err, props) {
-    if (err) {
-      return this.emit('error', err);
-    }
+  this.prompt(prompts, function (props) {
+    this.props.dom = props.dom;
+    this.props.min_concat = props.min_concat;
+    this.props.package_json = props.package_json;
 
-    this.props = props;
+    this.props.test_task = props.dom ? 'qunit' : 'nodeunit';
+    this.props.file_name = props.package_json ? '<%%= pkg.name %>' : 'FILE_NAME';
+
     cb();
   }.bind(this));
 };
