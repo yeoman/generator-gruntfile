@@ -2,7 +2,7 @@
 var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
-
+var grunt = require('grunt');
 
 var GruntfileGenerator = module.exports = function GruntfileGenerator(args, options) {
   yeoman.generators.Base.apply(this, arguments);
@@ -29,15 +29,13 @@ GruntfileGenerator.prototype.askFor = function askFor() {
     message: 'Is the DOM involved in ANY way?'
   }, {
     type: 'confirm',
-    name: 'min_concat',
+    name: 'minConcat',
     message: 'Will files be concatenated or minified?'
   }, {
     type: 'confirm',
-    name: 'package_json',
+    name: 'packageJSON',
     message: 'Will you have a package.json file?'
   }];
-
-  this.currentYear = (new Date()).getFullYear();
 
   // Find the first `preferred` item existing in `arr`.
   function prefer(arr, preferred) {
@@ -50,21 +48,19 @@ GruntfileGenerator.prototype.askFor = function askFor() {
   }
 
   // Guess at some directories, if they exist.
-  var dirs = grunt.file.expand({filter: 'isDirectory'}, '*').map(function(d) { return d.slice(0, -1); });
+  var dirs = grunt.file.expand({ filter: 'isDirectory' }, '*').map(function (d) { return d.slice(0, -1); });
 
-  this.props = {
-    lib_dir: prefer(dirs, ['lib', 'src']),
-    test_dir: prefer(dirs, ['test', 'tests', 'unit', 'spec']),
-    jquery: grunt.file.expand({filter: 'isFile'}, '**/jquery*.js').length > 0
-  };
+  this.libDir = prefer(dirs, ['lib', 'src']);
+  this.testDir = prefer(dirs, ['test', 'tests', 'unit', 'spec']);
+  this.jquery = grunt.file.expand({ filter: 'isFile' }, '**/jquery*.js').length > 0;
 
   this.prompt(prompts, function (props) {
-    this.props.dom = props.dom;
-    this.props.min_concat = props.min_concat;
-    this.props.package_json = props.package_json;
+    this.dom = props.dom;
+    this.minConcat = props.minConcat;
+    this.packageJSON = props.packageJSON;
 
-    this.props.test_task = props.dom ? 'qunit' : 'nodeunit';
-    this.props.file_name = props.package_json ? '<%%= pkg.name %>' : 'FILE_NAME';
+    this.testTask = props.dom ? 'qunit' : 'nodeunit';
+    this.fileName = props.packageJSON ? '<%%= pkg.name %>' : 'FILE_NAME';
 
     cb();
   }.bind(this));
