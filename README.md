@@ -31,7 +31,7 @@ You can also install a grunt task package using the subgenerator `install`
 ```
 yo gruntfile:install [package-name]
 ```
-This will npm install the package, save it to package.json in devDependencies and  attempt to add the appropriate grunt.loadNpmTasks('') line into your Gruntfile
+This will npm install the package, save it to package.json in devDependencies and  attempt to add the appropriate grunt.loadNpmTasks('...') line into your Gruntfile
 
 
 _Note that this template will generate files in the current directory, so be sure to change to a new directory first if you don't want to overwrite existing files._
