@@ -13,9 +13,7 @@ Maintained by [Addy Osmani](https://github.com/addyosmani).
 
 ## Installation
 
-If you haven't already done so, install [Yeoman][].
-
-Once Yeoman is installed, install this generator via `npm install -g generator-gruntfile`.
+Install this generator by running: `npm install -g generator-gruntfile`.
 
 
 ## Usage
