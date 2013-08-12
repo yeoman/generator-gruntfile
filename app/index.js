@@ -60,7 +60,7 @@ GruntfileGenerator.prototype.askFor = function askFor() {
     this.packageJSON = props.packageJSON;
 
     this.testTask = props.dom ? 'qunit' : 'nodeunit';
-    this.fileName = props.packageJSON ? '<%%= pkg.name %>' : 'FILE_NAME';
+    this.fileName = props.packageJSON ? '<%= pkg.name %>' : 'FILE_NAME';
 
     cb();
   }.bind(this));
