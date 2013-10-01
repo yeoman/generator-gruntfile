@@ -1,6 +1,6 @@
 {
   "name": "generator-gruntfile",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A gruntfile generator for Yeoman",
   "keywords": [
     "yeoman-generator",
@@ -22,7 +22,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "yeoman-generator": "~0.13.0",
+    "yeoman-generator": "~0.13.1",
     "grunt": "~0.4.1"
   },
   "devDependencies": {
