@@ -76,8 +76,8 @@ module.exports = function(grunt) {
                 tasks: ['jshint:gruntfile']
             },
             lib_test: {
-                files: '<%%= jshint.libTest.src %>',
-                tasks: ['jshint:libTest', '<%= testTask %>']
+                files: '<%%= jshint.lib_test.src %>',
+                tasks: ['jshint:lib_test', '<%= testTask %>']
             }
         }
     });
