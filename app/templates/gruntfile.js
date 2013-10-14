@@ -1,10 +1,9 @@
 'use strict';
 
-module.exports = function(grunt) {
-
-    // Project configuration.
+module.exports = function (grunt) {
+    // Project configuration
     grunt.initConfig({<% if (minConcat) { %>
-        // Metadata.<% if (packageJSON) { %>
+        // Metadata<% if (packageJSON) { %>
         pkg: grunt.file.readJSON('package.json'),
         banner: '/*! <%%= pkg.name %> - v<%%= pkg.version %> - ' +
             '<%%= grunt.template.today("yyyy-mm-dd") %>\n' +
@@ -19,7 +18,7 @@ module.exports = function(grunt) {
             '* http://PROJECT_WEBSITE/\n' +
             '* Copyright (c) <%%= grunt.template.today("yyyy") %> ' +
             'YOUR_NAME; Licensed MIT */\n',<% } } %>
-        // Task configuration.<% if (minConcat) { %>
+        // Task configuration<% if (minConcat) { %>
         concat: {
             options: {
                 banner: '<%%= banner %>',
@@ -58,7 +57,7 @@ module.exports = function(grunt) {
                 <% } %>}
             },
             gruntfile: {
-                src: 'Gruntfile.js'
+                src: 'gruntfile.js'
             },
             lib_test: {
                 src: ['<%= libDir %>/**/*.js', '<%= testDir %>/**/*.js']
@@ -82,14 +81,13 @@ module.exports = function(grunt) {
         }
     });
 
-    // These plugins provide necessary tasks.<% if (minConcat) { %>
+    // These plugins provide necessary tasks<% if (minConcat) { %>
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');<% } %>
     grunt.loadNpmTasks('grunt-contrib-<%= testTask %>');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    // Default task.
+    // Default task
     grunt.registerTask('default', ['jshint', '<%= testTask %>'<%= minConcat ? ", 'concat', 'uglify'" : "" %>]);
-
 };
