@@ -1,4 +1,4 @@
-# gruntfile Generator [![Build Status](https://secure.travis-ci.org/yeoman/generator-gruntfile.png?branch=master)](https://travis-ci.org/yeoman/generator-gruntfile)
+# gruntfile Generator [![Build Status](https://secure.travis-ci.org/yeoman/generator-gruntfile.png?branch=master)](https://travis-ci.org/yeoman/generator-gruntfile) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 > Create a gruntfile module with [Yeoman][], including nodeunit unit tests.
 
