@@ -38,24 +38,27 @@ Generator.prototype.askFor = function () {
   'running grunt. _If you run grunt after generating the Gruntfile, and ' +
   'it exits with errors, edit the file!_');
 
-  var prompts = [{
-    type: 'checkbox',
-    name: 'features',
-    message: 'What more would you like?',
-    choices: [{
-      name: 'Is the DOM involved in ANY way?',
-      value: 'dom',
-      checked: false
-    }, {
-      name: 'Will files be concatenated or minified?',
-      value: 'minConcat',
-      checked: false
-    }, {
-      name: 'Will you use a package.json file?',
-      value: 'packageJSON',
-      checked: false
-    }]
-  }];
+
+  var prompts = [
+    {
+      type: 'checkbox',
+      name: 'features',
+      message: 'What more would you like?',
+      choices: [{
+        name: 'Is the DOM involved in ANY way?',
+        value: 'dom',
+        checked: false
+      }, {
+        name: 'Will files be concatenated or minified?',
+        value: 'minConcat',
+        checked: false
+      }, {
+        name: 'Will you use a package.json file?',
+        value: 'packageJSON',
+        checked: false
+      }]
+    }
+  ];
 
   function prefer(arr, preferred) {
     for (var i = 0; i < preferred.length; i++) {
@@ -87,6 +90,7 @@ Generator.prototype.askFor = function () {
     self.packageJSON = hasFeature('packageJSON');
 
     self.testTask = hasFeature('dom') ? 'qunit' : 'nodeunit';
+
     self.fileName = hasFeature('packageJSON') ? '<%= pkg.name %>' : 'FILE_NAME';
 
     cb();
@@ -100,6 +104,9 @@ Generator.prototype.askFor = function () {
  */
 
 Generator.prototype.projectfiles = function () {
+  if (!this.packageJSON) {
+    this.template('package.json');
+  }
   this.template('gruntfile.js');
 };
 
@@ -108,3 +115,4 @@ Generator.prototype.projectfiles = function () {
  */
 
 module.exports = Generator;
+
