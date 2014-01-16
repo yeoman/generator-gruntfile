@@ -4,7 +4,12 @@
   "description": "A gruntfile generator for Yeoman",
   "keywords": [
     "yeoman-generator",
-    "scaffold"
+    "scaffold",
+    "grunt",
+    "gruntfile",
+    "build",
+    "task",
+    "runner"
   ],
   "homepage": "https://github.com/yeoman/generator-gruntfile",
   "bugs": "https://github.com/yeoman/generator-gruntfile/issues",
@@ -25,17 +30,17 @@
     "test": "mocha"
   },
   "dependencies": {
-    "yeoman-generator": "~0.13.1",
+    "yeoman-generator": "~0.16.0",
     "grunt": "~0.4.1"
   },
   "devDependencies": {
-    "mocha": "~1.12.0"
+    "mocha": "*"
   },
   "peerDependencies": {
     "yo": ">=1.0.0"
   },
   "engines": {
-    "node": ">=0.8.0",
+    "node": ">=0.10.0",
     "npm": ">=1.2.10"
   },
   "licenses": [
