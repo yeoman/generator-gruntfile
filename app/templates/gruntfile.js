@@ -1,6 +1,5 @@
-'use strict';
-
 module.exports = function (grunt) {
+	'use strict';
     // Project configuration
     grunt.initConfig({<% if (minConcat) { %>
         // Metadata<% if (packageJSON) { %>
@@ -40,6 +39,7 @@ module.exports = function (grunt) {
         },<% } %>
         jshint: {
             options: {
+                node: true,
                 curly: true,
                 eqeqeq: true,
                 immed: true,
