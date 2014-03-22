@@ -26,7 +26,7 @@ describe('gruntfile:app', function () {
     });
 
     generator.run({}, function () {
-      helpers.assertFiles(expected);
+      helpers.assertFile(expected);
       cb();
     });
   });
