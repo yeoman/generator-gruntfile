@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "<%= _.slugify(appname) %>",
   "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
@@ -8,6 +8,6 @@
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-uglify": "~0.2.7",<% } %>
     "grunt-contrib-jshint": "~0.7.2",
-    "grunt-contrib-<%= testTask %>": ""
+    "grunt-contrib-<%= testTask %>": "*"
   }
 }
