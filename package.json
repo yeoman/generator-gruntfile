@@ -22,12 +22,9 @@
   "files": [
     "app"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yeoman/generator-gruntfile.git"
-  },
+  "repository": "yeoman/generator-gruntfile",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --reporter spec"
   },
   "dependencies": {
     "yeoman-generator": "~0.16.0",
@@ -40,8 +37,7 @@
     "yo": ">=1.0.0"
   },
   "engines": {
-    "node": ">=0.10.0",
-    "npm": ">=1.2.10"
+    "node": ">=0.10.0"
   },
   "licenses": [
     {
