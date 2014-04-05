@@ -1,22 +1,14 @@
 module.exports = function (grunt) {
-	'use strict';
+    'use strict';
     // Project configuration
-    grunt.initConfig({<% if (minConcat) { %>
-        // Metadata<% if (packageJSON) { %>
+    grunt.initConfig({
+        // Metadata
         pkg: grunt.file.readJSON('package.json'),
         banner: '/*! <%%= pkg.name %> - v<%%= pkg.version %> - ' +
             '<%%= grunt.template.today("yyyy-mm-dd") %>\n' +
             '<%%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
             '* Copyright (c) <%%= grunt.template.today("yyyy") %> <%%= pkg.author.name %>;' +
-            ' Licensed <%%= props.license %> */\n',<% } else { %>
-        meta: {
-            version: '0.1.0'
-        },
-        banner: '/*! PROJECT_NAME - v<%%= meta.version %> - ' +
-            '<%%= grunt.template.today("yyyy-mm-dd") %>\n' +
-            '* http://PROJECT_WEBSITE/\n' +
-            '* Copyright (c) <%%= grunt.template.today("yyyy") %> ' +
-            'YOUR_NAME; Licensed MIT */\n',<% } } %>
+            ' Licensed <%%= props.license %> */\n',
         // Task configuration<% if (minConcat) { %>
         concat: {
             options: {
@@ -24,8 +16,8 @@ module.exports = function (grunt) {
                 stripBanners: true
             },
             dist: {
-                src: ['<%= libDir %>/<%= fileName %>.js'],
-                dest: 'dist/<%= fileName %>.js'
+                src: ['<%= libDir %>/<%= appname %>.js'],
+                dest: 'dist/<%= appname %>.js'
             }
         },
         uglify: {
@@ -34,9 +26,9 @@ module.exports = function (grunt) {
             },
             dist: {
                 src: '<%%= concat.dist.dest %>',
-                dest: 'dist/<%= fileName %>.min.js'
+                dest: 'dist/<%= appname %>.min.js'
             }
-        },<% } %>
+        },<% } %><% if (!hasJshint) {%>
         jshint: {
             options: {
                 node: true,
@@ -49,13 +41,11 @@ module.exports = function (grunt) {
                 sub: true,
                 undef: true,
                 unused: true,
-                boss: true,
                 eqnull: true,<% if (dom) { %>
-                browser: true,<% } %>
-                globals: {<% if (jquery) { %>
-                    jQuery: true
-                <% } %>}
-            },
+                browser: true,<% } %><% if (jquery || testTask === 'qunit') { %>
+                globals: { jQuery: true },<% } %>
+                boss: true
+            },<% } %>
             gruntfile: {
                 src: 'gruntfile.js'
             },
@@ -91,3 +81,4 @@ module.exports = function (grunt) {
     // Default task
     grunt.registerTask('default', ['jshint', '<%= testTask %>'<%= minConcat ? ", 'concat', 'uglify'" : "" %>]);
 };
+

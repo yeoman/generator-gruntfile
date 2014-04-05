@@ -1,0 +1,15 @@
+Description:
+    Creates a basic Grunt Javascript Task Runner configuration
+
+Options:
+    Is the DOM involved in ANY way?
+        Includes either the Qunit or Nodeunit test framework
+    Will files be concatenated or minified?
+        Includes the concatenate and minify Grunt tasks
+
+Example:
+    yo gruntfile
+
+    This will create:
+        package.json: Development packages installed by npm
+        Gruntfile.js: Configuration for the task runner
