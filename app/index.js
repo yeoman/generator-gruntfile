@@ -10,6 +10,7 @@ var GruntfileGenerator = yeoman.generators.Base.extend({
     if (this.dest.exists('package.json')) {
       this.packageJSON = this.dest.readJSON('package.json');
       this.appname = this.packageJSON.name || this.appname;
+      this.version = this.packageJSON.version || this.version;
       this.hasJshint = this.packageJSON.hasOwnProperty('jshintConfig') || this.dest.exists('.jshintrc');
     } else {
       this.hasJshint = this.dest.exists('.jshintrc');
@@ -67,6 +68,10 @@ var GruntfileGenerator = yeoman.generators.Base.extend({
       this.dom = hasFeature('dom');
       this.minConcat = hasFeature('minConcat');
       this.testTask = hasFeature('dom') ? 'qunit' : 'nodeunit';
+
+      if (!this.version) {
+          this.version = '0.0.0';
+      }
 
       done();
     }.bind(this));
