@@ -32,6 +32,7 @@ describe('gruntfile:app empty project', function () {
 
     generator.run({}, function () {
       helpers.assertFile(expected);
+      helpers.assertFileContent('./package.json', /"version": "0.0.0"/);
       done();
     });
   });
@@ -45,7 +46,7 @@ describe('gruntfile:app with existing package.json', function () {
       if (err) {
         done(err);
       }
-      file.write('package.json', '{"jshintConfig":{}}');
+      file.write('package.json', '{"jshintConfig":{}, "version": "0.1.0"}');
       generator = helpers.createGenerator('gruntfile:app', ['../../app']);
       generator.options['skip-install-message'] = true;
       generator.options['skip-install'] = true;
@@ -79,6 +80,7 @@ describe('gruntfile:app with existing package.json', function () {
 
     generator.run({}, function () {
       helpers.assertFileContent('./package.json', /jshintConfig/);
+      helpers.assertFileContent('./package.json', /"version": "0.1.0"/);
       done();
     });
   });
