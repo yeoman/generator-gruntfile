@@ -28,7 +28,8 @@
   },
   "dependencies": {
     "grunt": "~0.4.1",
-    "yeoman-generator": "~0.16.0"
+    "yeoman-generator": "~0.16.0",
+    "lodash": "^2.4.1"
   },
   "devDependencies": {
     "mocha": "*"
