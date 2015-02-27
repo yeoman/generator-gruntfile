@@ -1,6 +1,6 @@
 'use strict';
 var yeoman = require('yeoman-generator');
-var _ = require('lodash');
+var slugify = require('underscore.string/slugify');
 
 var GruntfileGenerator = yeoman.generators.Base.extend({
   initializing: function () {
@@ -10,7 +10,7 @@ var GruntfileGenerator = yeoman.generators.Base.extend({
     // to determine if they should be created later
     if (this.dest.exists('package.json')) {
       this.packageJSON = this.dest.readJSON('package.json');
-      this.appname = _.slugify(this.packageJSON.name || this.appname);
+      this.appname = slugify(this.packageJSON.name || this.appname);
       this.version = this.packageJSON.version || this.version;
       this.hasJshint = this.packageJSON.hasOwnProperty('jshintConfig') || this.dest.exists('.jshintrc');
     } else {

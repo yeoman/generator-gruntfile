@@ -28,7 +28,6 @@
   },
   "dependencies": {
     "grunt": "~0.4.1",
-    "lodash": "^2.4.1",
     "underscore.string": "^3.0.3",
     "yeoman-generator": "~0.16.0"
   },
