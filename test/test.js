@@ -46,7 +46,7 @@ describe('gruntfile:app with existing package.json', function () {
       if (err) {
         done(err);
       }
-      file.write('package.json', '{"jshintConfig":{}, "version": "0.1.0"}');
+      file.write('package.json', '{"name": "my lib", "jshintConfig":{}, "version": "0.1.0"}');
       generator = helpers.createGenerator('gruntfile:app', ['../../app']);
       generator.options['skip-install-message'] = true;
       generator.options['skip-install'] = true;
@@ -81,6 +81,20 @@ describe('gruntfile:app with existing package.json', function () {
     generator.run({}, function () {
       helpers.assertFileContent('./package.json', /jshintConfig/);
       helpers.assertFileContent('./package.json', /"version": "0.1.0"/);
+      done();
+    });
+  });
+
+  it('should slugify the appname properly', function(done){
+    helpers.mockPrompt(generator, {
+      features: [
+        'dom',
+        'minConcat'
+      ]
+    });
+
+    generator.run({}, function () {
+      helpers.assertFileContent('./Gruntfile.js', /my-lib/);
       done();
     });
   });
