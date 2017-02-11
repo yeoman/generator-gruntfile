@@ -1,5 +1,7 @@
 # gruntfile Generator [![Build Status](https://secure.travis-ci.org/yeoman/generator-gruntfile.svg?branch=master)](https://travis-ci.org/yeoman/generator-gruntfile)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/yeoman/generator-gruntfile.svg)](https://greenkeeper.io/)
+
 > Create a gruntfile module with [Yeoman](http://yeoman.io), including nodeunit unit tests.
 
 This generator is based of
